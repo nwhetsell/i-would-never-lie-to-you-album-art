@@ -23,6 +23,7 @@ jobs:
         sudo tlmgr install
         fontspec
         standalone
+        xcolor
         xetex
 
     - name: Create album art
