@@ -1,0 +1,26 @@
+\documentclass{standalone}
+
+\usepackage{fontspec}
+\usepackage{xcolor}
+
+\IfFontExistsTF{Cooper Black LT Pro}{
+  \setmainfont{Cooper Black LT Pro}
+}{}
+
+\setlength\tabcolsep{0.1ex}
+\renewcommand\arraystretch{1}
+\renewcommand\baselinestretch{0.7}
+
+\begin{document}
+
+\huge
+\addfontfeature{Color=6a9583} % rgb(106,149,131)
+
+\begin{tabular}{c}
+  I Would \\
+  Never \\
+  Lie \\
+  to You \\
+\end{tabular}
+
+\end{document}

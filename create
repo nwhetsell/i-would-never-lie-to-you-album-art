@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -e
+
+xelatex -interaction=errorstopmode i-would-never-lie-to-you.tex
+
+convert \
+  -trim \
+  -density 2000 \
+  -background 'rgb(32,47,50)' \
+  -alpha Remove \
+  -gravity Center \
+  -extent 2998x2998 \
+  +distort Perspective "0,0 0,0  0,%[fx:h-1] 256,%[fx:h-1]  %[fx:w-1],%[fx:h-1] 2488,%[fx:h-1]  %[fx:w-1],0 %[fx:w-1],0" \
+  +repage \
+  i-would-never-lie-to-you.pdf 'I Would Never Lie to You.png'
+
+width=$(identify -format %w 'I Would Never Lie to You.png')
+height=$(identify -format %h 'I Would Never Lie to You.png')
+size_reduction_factor=40
+
+convert \
+  -sample $(($width / $size_reduction_factor))x$(($height / $size_reduction_factor)) \
+  -filter Point -resize "$width"x"$height" \
+  'I Would Never Lie to You.png' 'I Would Never Lie to You.png'
+
+convert 'I Would Never Lie to You.png' \
+  -background black -vignette 0x1000-20-20% \
+  'I Would Never Lie to You.png'
